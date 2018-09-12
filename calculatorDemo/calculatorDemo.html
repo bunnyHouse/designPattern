@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="text" id="numberA">
+<input type="text" id="operator">
+<input type="text" id="numberB">
+<button id="calculate">Calculate</button>
+<p id="result"></p>
+
+<script>
+    var numberAInput = $('#numberA');
+    var operatorInput = $('#operator');
+    var numberBInput = $('#numberB');
+    var calcBtn = $('#calculate');
+    var result = $('#result');
+    var numberA, numberB, operator;
+    
+    calcBtn.addEventListener('click', function() {
+        numberA = +numberAInput.value;
+        numberB = +numberBInput.value;
+        operator = operatorInput.value;
+        result.innerHTML = calculate(numberA, numberB, operator);
+    });
+    
+    function calculate(numberA, numberB, operator) {
+        var result;
+        switch (operator) {
+            case '+':
+                result = numberA + numberB;
+                break;
+            case '-':
+                result = numberA - numberB;
+                break;
+            case '*':
+                result = numberA * numberB;
+                break;
+            case '/':
+                result = numberB === 0 ? '除数不可为0' : numberA / numberB;
+                break;
+            default:
+                result = '请输入正确的运算符';
+        }
+        return result;
+    }
+    
+    function $(selector, all) {
+        if (selector) {
+            if (all) {
+                return document.querySelectorAll(selector);
+            }
+            return document.querySelector(selector);
+        }
+    }
+</script>
+</body>
+</html>
